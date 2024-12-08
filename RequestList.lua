@@ -1,5 +1,6 @@
 local _, GBB = GroupBulletinBoard_Loader.Main()
 
+local tconcat = table.concat
 local wipe = GBB.api.wipe
 local RAID_CLASS_COLORS_HEX = GBB.api.RAID_CLASS_COLORS_HEX
 
@@ -862,15 +863,10 @@ function GBB.RequestShowTooltip( self )
     if not req then return end
 
     GameTooltip_SetDefaultAnchor( GameTooltip, UIParent )
-    if not GBB.DB.EnableGroup then
-      GameTooltip:SetOwner( GroupBulletinBoardFrame, "ANCHOR_BOTTOM", 0, 0 )
-    else
-      GameTooltip:SetOwner( GroupBulletinBoardFrame, "ANCHOR_BOTTOM", 0, -25 )
-    end
+    GameTooltip:SetOwner( GroupBulletinBoardFrame, "ANCHOR_TOP", 0, 0 )
     GameTooltip:ClearLines()
-    --if n:IsTruncated() then
-    --GameTooltip:AddLine( req.message, 0.9, 0.9, 0.9, 1 )
-    --end
+    
+    GameTooltip:AddLine( req.message, 0.9, 0.9, 0.9, 1 )
 
     if GBB.DB.ChatStyle then
       GameTooltip:AddLine( string.format( GBB.L[ "msgLastTime" ], GBB.formatTime( time() - req.last ) ) ..
