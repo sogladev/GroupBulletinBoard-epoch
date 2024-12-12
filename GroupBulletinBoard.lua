@@ -791,7 +791,7 @@ function GBB.OnUpdate( elapsed )
       GBB.LFG_Timer = time() + GBB.LFG_UPDATETIME
     end
 
-    if GBB.ElapsedSinceListUpdate > 0.5 then
+    if GBB.ElapsedSinceListUpdate > 1.0 then
       if GroupBulletinBoardFrame:IsVisible() then
         GBB.UpdateList()
       end

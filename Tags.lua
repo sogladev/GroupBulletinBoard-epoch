@@ -34,7 +34,7 @@ GBB.searchTagsLoc = langSplit( {
 } )
 
 GBB.badTagsLoc = langSplit( {
-  enGB = "layer",
+  enGB = "layer boost",
   deDE = "fc",
   ruRU = "гильдию гильдия слой",
   frFR = "",

@@ -462,6 +462,24 @@ function GBB.UpdateList()
   GroupBulletinBoardFrameStatusText:SetText( string.format( GBB.L[ "msgNbRequest" ], count ) )
 end
 
+local nonLfgHyperlinks = {
+  [ "|Hglyph:" ] = true,
+  [ "|Hspell:" ] = true,
+  [ "|Henchant:" ] = true,
+  [ "|Htalent:" ] = true,
+  [ "|Htrade:" ] = true,
+}
+
+local function hasNonLfgHyperlinks( msg )
+  for k, v in pairs( nonLfgHyperlinks ) do
+    -- literal string match, not pattern
+    if strfind( msg, k, 1, true ) then 
+      return true
+    end
+  end
+  return false
+end
+
 function GBB.GetDungeons( msg, name )
   if msg == nil then return {} end
   local dungeons = {}
@@ -550,6 +568,13 @@ function GBB.GetDungeons( msg, name )
       dungeons[ "DM2" ] = true
     end
   end
+  
+  -- Irrelevant hyperlinks in lfg messages invalidate message
+  if not dungeons[ "TRADE" ] and not dungeons [ "MISC" ] 
+      and hasNonLfgHyperlinks( msg ) then
+    isBad = true
+    isGood = false
+  end
 
   if isBad then
     --dungeons={}
@@ -602,7 +627,7 @@ function GBB.GetDungeons( msg, name )
       end
     end
   end
-
+  
 
   return dungeons, isGood, isBad, wordcount, isHeroic
 end
