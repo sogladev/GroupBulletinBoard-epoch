@@ -500,6 +500,17 @@ function GBB.Init()
 
   GBB.FoldedDungeons = {}
 
+  -- Initialize filter settings
+  for i = 1, (GBB.MAXDUNGEON or 0) do
+    local dungeon = GBB.dungeonSort[ i ]
+    if dungeon then
+      local key = "FilterDungeon" .. dungeon
+      if GBB.DBChar[ key ] == nil then
+        GBB.DBChar[ key ] = true
+      end
+    end
+  end
+
   -- Timer-Stuff
   GBB.MAXTIME = time() + 60 * 60 * 24 * 365 --add a year!
 
