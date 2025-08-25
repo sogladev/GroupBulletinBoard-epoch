@@ -260,8 +260,8 @@ function GBB.OptionsInit()
   CheckBoxChar( "FilterLevel", false )
   CheckBoxChar( "DontFilterOwn", false )
 
-  CheckBoxChar( "HeroicOnly", false )
-  CheckBoxChar( "NormalOnly", false )
+  -- CheckBoxChar( "HeroicOnly", false )
+  -- CheckBoxChar( "NormalOnly", false )
 
   --GBB.Options.AddSpace()
 
