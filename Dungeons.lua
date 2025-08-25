@@ -615,10 +615,18 @@ GBB.TbcDungeonNames      = {
 GBB.VanillDungeonNames   = {
   "RFC", "WC", "DM", "SFK", "STOCKS", "BFD", "GNOMER",
   "RFK", "GY", "LIB", "ARMS", "CATH", "RFD", "ULDA",
-  "ZF", "MARA", "ST", "BRD", "LBRS", "DME", "DMN",
-  "DMW", "STRAT", "SCHOLO", "UBRS", "ONY", "MC", "ZG",
-  "AQ20", "BWL", "AQ40", "NAXX",
-  "GM", "BH", "SC", "ULDUM"
+  "GM",
+  "ZF", "MARA", "ST", "BRD", "LBRS",
+  "UBRS",
+  "DME", "DMN", "DMW",
+  "STRAT", "SCHOLO",
+  "SC",
+  "ONY", "MC",
+  "ULDUM",
+  "BH", "BWL",
+  "ZG",
+  "AQ20",  "AQ40",
+  "NAXX",
 }
 
 
