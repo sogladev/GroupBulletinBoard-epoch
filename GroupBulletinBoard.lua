@@ -66,7 +66,7 @@ GBB.Initalized = false
 GBB.ElapsedSinceListUpdate = 0
 GBB.LFG_Timer = 0
 GBB.LFG_UPDATETIME = 10
-GBB.TBCDUNGEONBREAK = 57
+GBB.TBCDUNGEONBREAK = 61
 GBB.DUNGEONBREAK = 25
 GBB.COMBINEMSGTIMER = 10
 GBB.MAXCOMPACTWIDTH = 350
@@ -162,13 +162,30 @@ function GBB.FilterDungeon( dungeon, isHeroic, isRaid )
   if isHeroic == nil then isHeroic = false end
   if isRaid == nil then isRaid = false end
 
+  if not GBB.dungeonLevel[ dungeon ] then
+    return false
+  end
+
+  local filterKey = "FilterDungeon" .. dungeon
+  -- Default per-dungeon filter to true if missing
+  local filterSetting = GBB.DBChar[ filterKey ]
+  if filterSetting == nil then
+    filterSetting = true
+  end
+
   -- If the user is within the level range, or if they're max level and it's heroic.
   local inLevelRange = (not isHeroic and GBB.dungeonLevel[ dungeon ][ 1 ] <= GBB.UserLevel and GBB.UserLevel <= GBB.dungeonLevel[ dungeon ][ 2 ]) or
       (isHeroic and GBB.UserLevel == 70)
 
-  return GBB.DBChar[ "FilterDungeon" .. dungeon ] and
-      (isRaid or ((GBB.DBChar[ "HeroicOnly" ] == false or isHeroic) and (GBB.DBChar[ "NormalOnly" ] == false or isHeroic == false))) and
-      (GBB.DBChar.FilterLevel == false or inLevelRange)
+    local heroicOnly = GBB.DBChar[ "HeroicOnly" ] == true
+    local normalOnly = GBB.DBChar[ "NormalOnly" ] == true
+    local filterLevel = GBB.DBChar.FilterLevel == true
+
+    local result = filterSetting and
+        (isRaid or ((not heroicOnly or isHeroic) and (not normalOnly or isHeroic == false))) and
+        (not filterLevel or inLevelRange)
+
+  return result
 end
 
 function GBB.formatTime( sec )
@@ -339,8 +356,10 @@ function GBB.CreateTagList()
     GBB.heroicTagsLoc[ "custom" ] = GBB.Split( GBB.DB.Custom.Heroic )
 
     GBB.dungeonTagsLoc[ "custom" ] = {}
-    for index = 1, GBB.TBCMAXDUNGEON do
-      GBB.dungeonTagsLoc[ "custom" ][ GBB.dungeonSort[ index ] ] = GBB.Split( GBB.DB.Custom[ GBB.dungeonSort[ index ] ] )
+    for index = 1, GBB.MAXDUNGEON do
+      if GBB.dungeonSort[ index ] then
+        GBB.dungeonTagsLoc[ "custom" ][ GBB.dungeonSort[ index ] ] = GBB.Split( GBB.DB.Custom[ GBB.dungeonSort[ index ] ] )
+      end
     end
 
     GBB.CreateTagListLOC( "custom" )
@@ -564,7 +583,6 @@ function GBB.Init()
         GBB.ToggleWindow()
       else
         GBB.Popup_Minimap( self.button, true )
-        --GBB.Options.Open(2)
       end
     end,
     GBB.Title
@@ -603,9 +621,6 @@ function GBB.Init()
   GBB.RealLevel = {}
   GBB.RealLevel[ GBB.UserName ] = GBB.UserLevel
 
-  --GroupBulletinBoardFrameTitle:SetText( string.format( GBB.TxtEscapePicture, GBB.MiniIcon ) .. " " .. GBB.Title )
-
-  GBB.Initalized = true
 
   GBB.PopupDynamic = GBB.Tool.CreatePopup( GBB.OptionsUpdate )
 
@@ -624,6 +639,7 @@ function GBB.Init()
   GameTooltip:HookScript( "OnTooltipSetUnit", hooked_createTooltip )
 
   GBB.version = GetAddOnMetadata( TOCNAME, "Version" )
+  GBB.Initalized = true
 end
 
 local function OnEnterWorld()

@@ -1,13 +1,14 @@
-# GroupBulletinBoard
+# GroupBulletinBoard-Epoch
 
-### [Download Latest](https://github.com/fondlez/GroupBulletinBoard/releases/latest)
+This is an adaptation for [Project Epoch](https://www.project-epoch.net) of a port to WotLK (3.3.5a) of a TBC backport of a Classic TBC addon!
 
-This is a port to WotLK (3.3.5a) of a TBC backport of a Classic TBC addon!
-
+* Project Epoch (3.3.5a) [sogladev](https://github.com/sogladev)
 * WotLK (3.3.5a) port: [fondlez](https://github.com/fondlez)
 * TBC 2.4.3 backport: [Obszczymucha aka. Ohhaimark](https://codeberg.org/obszczymucha/group-bulletin-board-tbc)
 * Classic TBC addon: [Vyscî-Whitemane](https://github.com/Vysci/LFG-Bulletin-Board)
 * Original addon: https://legacy.curseforge.com/wow/addons/group-bulletin-board
+
+⚠️ When using [LFG Addon](https://github.com/Bennylavaa/LFG) disable the "LFG" channel (see Interface section below) if you do not wish to see `LFG:smlib:damage` entries.
 
 ## Description
 GroupBulletinBoard (GBB) provides an overview of the endless requests in the 
@@ -24,10 +25,13 @@ To open the settings, use slash command: **`/gbb`** or click the minimap icon.
 ## Graphical Interface
 
 ### Main Window
-![Main Window screenshot](doc/img/addon-gbb-1.0.0-main.jpg)
+![Main Window screenshot](doc/img/addon-gbb-1.2.0-main.jpg)
 
 ### Interface Settings
-![Interface Settings screenshot](doc/img/addon-gbb-1.0.0-settings.jpg)
+
+
+
+![Interface Settings screenshot](doc/img/addon-gbb-1.2.0-settings.jpg)
 
 ## Slash Commands
 

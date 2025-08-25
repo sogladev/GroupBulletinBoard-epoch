@@ -405,7 +405,10 @@ function GBB.UpdateList()
 
   for i, req in pairs( GBB.RequestList ) do
     if type( req ) == "table" then
-      if (ownRequestDungeons[ req.dungeon ] == true or GBB.FilterDungeon( req.dungeon, req.IsHeroic, req.IsRaid )) and req.last + GBB.DB.TimeOut > time() then
+      local passesFilter = (ownRequestDungeons[ req.dungeon ] == true or GBB.FilterDungeon( req.dungeon, req.IsHeroic, req.IsRaid ))
+      local notTimedOut = req.last + GBB.DB.TimeOut > time()
+
+      if passesFilter and notTimedOut then
         count = count + 1
 
         --header
@@ -442,12 +445,12 @@ function GBB.UpdateList()
 
   if GBB.DB.EnableShowOnly then
     local hi = GBB.dungeonSort[ LastDungeon ] or 0
-    while hi < GBB.TBCMAXDUNGEON do
+    while hi < GBB.MAXDUNGEON do
       if LastDungeon ~= "" and GBB.FoldedDungeons[ LastDungeon ] ~= true and GBB.DB.EnableShowOnly then
         yy = yy + itemHight * (GBB.DB.ShowOnlyNb - cEntrys)
       end
       hi = hi + 1
-      if (ownRequestDungeons[ GBB.dungeonSort[ hi ] ] == true or GBB.FilterDungeon( GBB.dungeonSort[ hi ], false, false )) then
+      if GBB.dungeonSort[ hi ] and (ownRequestDungeons[ GBB.dungeonSort[ hi ] ] == true or GBB.FilterDungeon( GBB.dungeonSort[ hi ], false, false )) then
         yy = CreateHeader( yy, GBB.dungeonSort[ hi ] )
         cEntrys = 0
       else
@@ -763,7 +766,6 @@ function GBB.ParseMessage( msg, name, channel )
     end
   end
 
-
   if doUpdate then
     for i, req in pairs( GBB.RequestList ) do
       if type( req ) == "table" then
@@ -797,8 +799,10 @@ function GBB.UnfoldAllDungeon()
 end
 
 function GBB.FoldAllDungeon()
-  for i = 1, GBB.TBCMAXDUNGEON do
-    GBB.FoldedDungeons[ GBB.dungeonSort[ i ] ] = true
+  for i = 1, GBB.MAXDUNGEON do
+    if GBB.dungeonSort[ i ] then
+      GBB.FoldedDungeons[ GBB.dungeonSort[ i ] ] = true
+    end
   end
   GBB.UpdateList()
 end
@@ -832,7 +836,7 @@ local function createMenu( DungeonID, req )
   GBB.PopupDynamic:AddItem( "", true )
   GBB.PopupDynamic:AddItem( GBB.L[ "HeaderSettings" ], false, GBB.Options.Open, 1 )
 
-  GBB.PopupDynamic:AddItem( GBB.L[ "TBCPanelFilter" ], false, GBB.Options.Open, 2 )
+  GBB.PopupDynamic:AddItem( GBB.L[ "PanelFilter" ], false, GBB.Options.Open, 2 )
 
   GBB.PopupDynamic:AddItem( GBB.L[ "PanelAbout" ], false, GBB.Options.Open, 6 )
   GBB.PopupDynamic:AddItem( GBB.L[ "BtnCancel" ], false )
