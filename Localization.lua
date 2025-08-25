@@ -28,8 +28,8 @@ GBB.locales = {
     -- option panel
 
     ["HeaderSettings"] = "Settings",
-    ["PanelFilter"] = "Vanilla Filter",
-    ["TBCPanelFilter"] = "Filter",
+    ["PanelFilter"] = "Filter",
+    ["TBCPanelFilter"] = "TBC Filter",
     ["HeaderTags"] = "Search patterns",
     ["HeaderTagsCustom"] = "Custom search patterns",
     ["PanelTags"] = "Search patterns",
@@ -228,8 +228,8 @@ GBB.locales = {
     ["msgTimeFormat"] = "%dm %02ds",
     ["msgTotalTime"] = "Gesamtzeit %s",
     ["PanelAbout"] = "Über",
-    ["PanelFilter"] = "Vanilla Filter",
-    ["TBCPanelFilter"] = "Filter",
+    ["PanelFilter"] = "Filter",
+    ["TBCPanelFilter"] = "TBC Filter",
     ["PanelLocales"] = "Lokalisierung",
     ["PanelTags"] = "Wörterlisten",
     ["SlashAbout"] = "'Über' öffnen",
@@ -345,8 +345,8 @@ GBB.locales = {
     ["msgTimeFormat"] = "%dm %02ds",
     ["msgTotalTime"] = "Общее время %s",
     ["PanelAbout"] = "Информация",
-    ["PanelFilter"] = "Фильтр Classic",
-    ["TBCPanelFilter"] = "Фильтр",
+    ["PanelFilter"] = "Фильтр",
+    ["TBCPanelFilter"] = "Фильтр TBC",
     ["PanelLocales"] = "Перевод",
     ["PanelTags"] = "Пользовательские шаблоны",
     ["SlashAbout"] = "открыть информацию",
@@ -381,7 +381,9 @@ GBB.locales = {
     -- option panel
 
     ["HeaderSettings"] = "設定",
+    -- TODO: translate
     ["PanelFilter"] = "經典時代過濾",
+    -- TODO: translate
     ["TBCPanelFilter"] = "燃燒遠征過濾",
     ["HeaderTags"] = "搜尋 patterns",
     ["HeaderTagsCustom"] = "自訂搜尋 patterns",
