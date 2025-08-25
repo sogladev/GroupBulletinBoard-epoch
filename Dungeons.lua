@@ -522,6 +522,7 @@ GBB.VanillaDungeonLevels = {
   [ "GM" ] = { 39, 44 },
   [ "BH" ] = { 57, 60 },
   [ "SC" ] = { 57, 60 },
+  [ "ULDUM" ] = { 60, 60 },
 }
 
 GBB.PostTbcDungeonLevels = {
@@ -570,6 +571,7 @@ GBB.PostTbcDungeonLevels = {
   [ "GM" ] = { 39, 44 },
   [ "BH" ] = { 57, 60 },
   [ "SC" ] = { 57, 60 },
+  [ "ULDUM" ] = { 60, 60 },
 }
 
 GBB.TbcDungeonLevels     = {
@@ -616,7 +618,7 @@ GBB.VanillDungeonNames   = {
   "ZF", "MARA", "ST", "BRD", "LBRS", "DME", "DMN",
   "DMW", "STRAT", "SCHOLO", "UBRS", "ONY", "MC", "ZG",
   "AQ20", "BWL", "AQ40", "NAXX",
-  "GM", "BH", "SC",
+  "GM", "BH", "SC", "ULDUM"
 }
 
 
