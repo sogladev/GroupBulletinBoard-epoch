@@ -84,6 +84,10 @@ function GBB.GetDungeonNames()
     [ "BAD" ] = "DEBUG BAD WORDS - REJECTED",
     [ "BREW" ] = "Brewfest - Coren Direbrew",
     [ "HOLLOW" ] = "Hallow's End - Headless Horseman",
+    [ "GM" ] = "Glittermurk Mines",
+    [ "BH" ] = "Baradin Hold",
+    [ "SC" ] = "Stonetalon Caverns",
+    [ "ULDUM" ] = "Uldum (25)",
   }
 
   local dungeonNamesLocales = {
@@ -154,6 +158,10 @@ function GBB.GetDungeonNames()
       [ "ARENA" ] = "Arena (PvP)",
       [ "MISC" ] = "Verschiedenes",
       [ "TRADE" ] = "Handel",
+      [ "GM" ] = "Glittermurk Mines",
+      [ "BH" ] = "Baradin Hold",
+      [ "SC" ] = "Stonetalon Caverns",
+      [ "ULDUM" ] = "Uldum (25)",
 
     },
     frFR = {
@@ -217,6 +225,10 @@ function GBB.GetDungeonNames()
       [ "AQ40" ] = "Ahn'Qiraj (40)",
       [ "NAXX" ] = "Naxxramas (40)",
       [ "ARENA" ] = "Arena (PvP)",
+      [ "GM" ] = "Glittermurk Mines",
+      [ "BH" ] = "Baradin Hold",
+      [ "SC" ] = "Stonetalon Caverns",
+      [ "ULDUM" ] = "Uldum (25)",
     },
     esMX = {
       [ "RFC" ] = "Sima Ígnea",
@@ -279,6 +291,10 @@ function GBB.GetDungeonNames()
       [ "AQ40" ] = "Ahn'Qiraj (40)",
       [ "NAXX" ] = "Naxxramas (40)",
       [ "ARENA" ] = "Arena (PvP)",
+      [ "GM" ] = "Glittermurk Mines",
+      [ "BH" ] = "Baradin Hold",
+      [ "SC" ] = "Stonetalon Caverns",
+      [ "ULDUM" ] = "Uldum (25)",
 
     },
     ruRU = {
@@ -350,6 +366,10 @@ function GBB.GetDungeonNames()
       [ "ARENA" ] = "Arena (PvP)",
       [ "ZF" ] = "Зул'Фаррак",
       [ "ZG" ] = "Зул'Гуруб (20)",
+      [ "GM" ] = "Glittermurk Mines",
+      [ "BH" ] = "Baradin Hold",
+      [ "SC" ] = "Stonetalon Caverns",
+      [ "ULDUM" ] = "Uldum (25)",
     },
     zhTW = {
       [ "RFC" ] = "怒焰裂谷",
@@ -417,6 +437,10 @@ function GBB.GetDungeonNames()
       [ "EOTS" ] = "暴風之眼 (PvP)",
       [ "MISC" ] = "未分類",
       [ "TRADE" ] = "交易",
+      [ "GM" ] = "Glittermurk Mines",
+      [ "BH" ] = "Baradin Hold",
+      [ "SC" ] = "Stonetalon Caverns",
+      [ "ULDUM" ] = "Uldum (25)",
     },
   }
 
@@ -495,6 +519,9 @@ GBB.VanillaDungeonLevels = {
   [ "SM2" ] = { 28, 42 },
   [ "DM2" ] = { 58, 60 },
   [ "DEADMINES" ] = { 18, 23 },
+  [ "GM" ] = { 39, 44 },
+  [ "BH" ] = { 57, 60 },
+  [ "SC" ] = { 57, 60 },
 }
 
 GBB.PostTbcDungeonLevels = {
@@ -540,6 +567,9 @@ GBB.PostTbcDungeonLevels = {
   [ "SM2" ] = { 28, 42 },
   [ "DM2" ] = { 58, 60 },
   [ "DEADMINES" ] = { 16, 24 },
+  [ "GM" ] = { 39, 44 },
+  [ "BH" ] = { 57, 60 },
+  [ "SC" ] = { 57, 60 },
 }
 
 GBB.TbcDungeonLevels     = {
@@ -586,6 +616,7 @@ GBB.VanillDungeonNames   = {
   "ZF", "MARA", "ST", "BRD", "LBRS", "DME", "DMN",
   "DMW", "STRAT", "SCHOLO", "UBRS", "ONY", "MC", "ZG",
   "AQ20", "BWL", "AQ40", "NAXX",
+  "GM", "BH", "SC",
 }
 
 
