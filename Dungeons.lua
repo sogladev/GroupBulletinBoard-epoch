@@ -689,7 +689,7 @@ function GBB.GetDungeonSort()
     end
   end
 
-  local dungeonOrder = { GBB.VanillDungeonNames, GBB.TbcDungeonNames, GBB.PvpNames, GBB.Misc, GBB.DebugNames }
+  local dungeonOrder = { GBB.VanillDungeonNames, GBB.PvpNames, GBB.Misc, GBB.DebugNames }
 
   -- Why does Lua not having a fucking size function
   local vanillaDungeonSize = 0
@@ -727,4 +727,4 @@ local function DetermineVanillDungeonRange()
   return GBB.PostTbcDungeonLevels
 end
 
-GBB.dungeonLevel = Union( DetermineVanillDungeonRange(), GBB.TbcDungeonLevels )
+GBB.dungeonLevel = DetermineVanillDungeonRange()
