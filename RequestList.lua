@@ -407,8 +407,21 @@ function GBB.UpdateList()
     if type( req ) == "table" then
       local passesFilter = (ownRequestDungeons[ req.dungeon ] == true or GBB.FilterDungeon( req.dungeon, req.IsHeroic, req.IsRaid ))
       local notTimedOut = req.last + GBB.DB.TimeOut > time()
+      
+      -- Search filter
+      local passesSearch = true
+      if GBB.SearchTerm and GBB.SearchTerm ~= "" then
+        local searchLower = string.lower(GBB.SearchTerm)
+        local nameLower = string.lower(req.name or "")
+        local messageLower = string.lower(req.message or "")
+        local dungeonLower = string.lower(GBB.dungeonNames[req.dungeon] or "")
+        
+        passesSearch = string.find(nameLower, searchLower, 1, true) or 
+                      string.find(messageLower, searchLower, 1, true) or
+                      string.find(dungeonLower, searchLower, 1, true)
+      end
 
-      if passesFilter and notTimedOut then
+      if passesFilter and notTimedOut and passesSearch then
         count = count + 1
 
         --header
@@ -844,6 +857,8 @@ local function createMenu( DungeonID, req )
 end
 
 function GBB.ClickFrame( self, button )
+  GBB.ClearSearchBoxFocus()
+  
   if button == "LeftButton" then
   else
     createMenu()

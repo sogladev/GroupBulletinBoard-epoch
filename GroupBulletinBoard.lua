@@ -70,6 +70,7 @@ GBB.TBCDUNGEONBREAK = 61
 GBB.DUNGEONBREAK = 25
 GBB.COMBINEMSGTIMER = 10
 GBB.MAXCOMPACTWIDTH = 350
+GBB.SearchTerm = ""
 
 -- Tools
 -------------------------------------------------------------------------------------
@@ -284,6 +285,19 @@ function GBB.BtnSettings( button )
   else
     GBB.Popup_Minimap( "cursor", false )
     --GBB.Options.Open(1)
+  end
+end
+
+function GBB.SearchBox_OnTextChanged()
+  local searchBox = GroupBulletinBoardFrameSearchBox
+  if searchBox then
+    local text = searchBox:GetText()
+    if text == "Search..." then
+      GBB.SearchTerm = ""
+    else
+      GBB.SearchTerm = string.lower(text)
+    end
+    GBB.UpdateList()
   end
 end
 
@@ -612,6 +626,12 @@ function GBB.Init()
 
   GroupBulletinBoardFrameSelectChannel:SetText( GBB.DB.AnnounceChannel )
 
+  local searchBox = GroupBulletinBoardFrameSearchBox
+  if searchBox then
+    searchBox:SetText("Search...")
+    searchBox:SetTextColor(0.5, 0.5, 0.5, 1)
+  end
+
   GBB.ResizeFrameList()
 
   if GBB.DB.EscapeQuit then
@@ -784,6 +804,14 @@ end
 function GBB.OnShow()
   GBB.InterfaceOptionsFrame.Rise()
   GBB.Options.DoRefresh()
+  
+  if GroupBulletinBoardFrameSearchBox then
+    if GBB.DBChar and GBB.DBChar.EnableSearchBar then
+      GroupBulletinBoardFrameSearchBox:Show()
+    else
+      GroupBulletinBoardFrameSearchBox:Hide()
+    end
+  end
 end
 
 function GBB.OnHide()
@@ -805,6 +833,34 @@ function GBB.OnLoad()
   GBB.Tool.OnUpdate( GBB.OnUpdate )
 end
 
+function GroupBulletinBoard_Addon_SearchBox_OnTextChanged()
+  GBB.SearchBox_OnTextChanged()
+end
+
+function GBB.ClearSearchBoxFocus()
+  if GroupBulletinBoardFrameSearchBox and GroupBulletinBoardFrameSearchBox:HasFocus() then
+    GroupBulletinBoardFrameSearchBox:ClearFocus()
+  end
+end
+
+GroupBulletinBoard_Addon.ClearSearchBoxFocus = GBB.ClearSearchBoxFocus
+GroupBulletinBoard_Addon.OnLoad = GBB.OnLoad
+GroupBulletinBoard_Addon.OnShow = GBB.OnShow
+GroupBulletinBoard_Addon.OnHide = GBB.OnHide
+GroupBulletinBoard_Addon.OnSizeChanged = GBB.OnSizeChanged
+GroupBulletinBoard_Addon.BtnClose = GBB.BtnClose
+GroupBulletinBoard_Addon.BtnSettings = GBB.BtnSettings
+GroupBulletinBoard_Addon.BtnSelectChannel = GBB.BtnSelectChannel
+GroupBulletinBoard_Addon.ClickFrame = GBB.ClickFrame
+GroupBulletinBoard_Addon.ClickRequest = GBB.ClickRequest
+GroupBulletinBoard_Addon.ClickDungeon = GBB.ClickDungeon
+GroupBulletinBoard_Addon.RequestShowTooltip = GBB.RequestShowTooltip
+GroupBulletinBoard_Addon.RequestHideTooltip = GBB.RequestHideTooltip
+GroupBulletinBoard_Addon.ScrollGroupList = GBB.ScrollGroupList
+GroupBulletinBoard_Addon.GetFocus = GBB.GetFocus
+GroupBulletinBoard_Addon.FocusLost = GBB.FocusLost
+GroupBulletinBoard_Addon.EditAnnounceMessage_Changed = GBB.EditAnnounceMessage_Changed
+GroupBulletinBoard_Addon.Announce = GBB.Announce
 function GBB.OnSizeChanged()
   if GBB.Initalized == true then
     GBB.ResizeFrameList()

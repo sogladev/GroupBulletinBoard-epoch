@@ -1,4 +1,4 @@
-﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
 
 	<Button name="GroupBulletinBoard_MiniButton" inherits="UIPanelButtonTemplate" virtual="true">
 		<NormalFont style="GameFontNormalSmall"/>
@@ -73,9 +73,44 @@
 			</Layer>
 		</Layers>
 
-		<Frames>			
-			<!-- default gui elements -->
-			
+		<Frames>
+			<!-- Search Box -->
+			<EditBox name="$parentSearchBox" letters="255" autoFocus="false" inherits="SearchBoxTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentTitleEdition" >
+						<Offset>
+							<AbsDimension x="20" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Size x="165" y="10"/>
+				<Scripts>
+					<OnEditFocusGained>
+						if this:GetText() == "Search..." then
+							this:SetText("")
+							this:SetTextColor(1, 1, 1, 1)
+						end
+					</OnEditFocusGained>
+					<OnEditFocusLost>
+						if this:GetText() == "" then
+							this:SetText("Search...")
+							this:SetTextColor(0.5, 0.5, 0.5, 1)
+						end
+					</OnEditFocusLost>
+					<OnTextChanged>
+						GroupBulletinBoard_Addon_SearchBox_OnTextChanged()
+					</OnTextChanged>
+					<OnEscapePressed>
+						this:ClearFocus()
+					</OnEscapePressed>
+					<OnEnterPressed>
+						this:ClearFocus()
+					</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+
+		<!-- default gui elements -->
+
 			<Button name="$parentCloseButton" inherits="UIPanelCloseButton" Text="Close">
 				<Anchors>
 					<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
@@ -88,6 +123,9 @@
 					<OnClick>
 						 GroupBulletinBoard_Addon.BtnClose()
 					</OnClick>
+					<OnMouseDown>
+						GroupBulletinBoard_Addon.ClearSearchBoxFocus()
+					</OnMouseDown>
 				</Scripts>
 			</Button>
 
@@ -109,6 +147,7 @@
         </Size>
 				<Scripts>
 					<OnMouseDown>
+						GroupBulletinBoard_Addon.ClearSearchBoxFocus()
 						GroupBulletinBoard_Addon.BtnSettings(button )
 					</OnMouseDown>
 				</Scripts>
@@ -126,6 +165,7 @@
 				<Size><AbsDimension x="150" y="20" /></Size>
 				<Scripts>
 					<OnClick>
+						GroupBulletinBoard_Addon.ClearSearchBoxFocus()
 						GroupBulletinBoard_Addon.BtnSelectChannel()
 					</OnClick>
 				</Scripts>

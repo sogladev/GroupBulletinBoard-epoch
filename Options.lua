@@ -99,6 +99,14 @@ function GBB.OptionsUpdate()
   GBB.ClearNeeded = true
 
   isChat = GBB.DB.ChatStyle
+  
+  if GroupBulletinBoardFrameSearchBox then
+    if GBB.DBChar.EnableSearchBar then
+      GroupBulletinBoardFrameSearchBox:Show()
+    else
+      GroupBulletinBoardFrameSearchBox:Hide()
+    end
+  end
 end
 
 local DoSelectFilter = function( state, ChkBox, Start, Max )
@@ -258,6 +266,7 @@ function GBB.OptionsInit()
 
   --GBB.Options.AddSpace()
   CheckBoxChar( "FilterLevel", false )
+  CheckBoxChar( "EnableSearchBar", true )
   CheckBoxChar( "DontFilterOwn", false )
 
   -- CheckBoxChar( "HeroicOnly", false )
