@@ -727,4 +727,4 @@ local function DetermineVanillDungeonRange()
   return GBB.PostTbcDungeonLevels
 end
 
-GBB.dungeonLevel = DetermineVanillDungeonRange()
+GBB.dungeonLevel = GBB.VanillaDungeonLevels
