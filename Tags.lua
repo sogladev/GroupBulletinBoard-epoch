@@ -120,7 +120,7 @@ GBB.dungeonTagsLoc = {
     [ "BREW" ]   = "brewfest coren direbrew",
     [ "HOLLOW" ] = "headless horseman",
     [ "TRADE" ]  = "buy buying sell selling wts wtb hitem henchant htrade enchanter", --hlink
-    [ "GM" ]     = "glittermurk glitter gm ggm glittermurk",
+    [ "GM" ]     = "glittermurk glitter gm ggm gmm glittermurk",
     [ "BH" ]     = "baradin hold bh baradinhold",
     [ "SC" ]     = "stonetalon sc stonetaloncaverns",
   } ),
