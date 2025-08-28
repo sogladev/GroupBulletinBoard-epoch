@@ -25,13 +25,13 @@ To open the settings, use slash command: **`/gbb`** or click the minimap icon.
 ## Graphical Interface
 
 ### Main Window
-![Main Window screenshot](doc/img/addon-gbb-1.2.0-main.jpg)
+![Main Window screenshot](doc/img/addon-gbb-1.2.1-main.jpg)
 
 ### Interface Settings
 
 
 
-![Interface Settings screenshot](doc/img/addon-gbb-1.2.0-settings.jpg)
+![Interface Settings screenshot](doc/img/addon-gbb-1.2.1-settings.jpg)
 
 ## Slash Commands
 

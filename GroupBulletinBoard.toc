@@ -1,7 +1,7 @@
 ## Interface: 30300
 ## Title: Group Bulletin Board
 ## Notes: A bulletin board for LFG/LFM messages for Project Epoch
-## Version: 1.2.0
+## Version: 1.2.1
 ## Author: sogladev
 ## X-Website: http://github.com/sogladev
 ## X-Category: Chat/Communication
