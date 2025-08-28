@@ -13,9 +13,14 @@ local requestNil = { dungeon = "NIL", start = 0, last = 0, name = "" }
 local function requestSort_TOP_TOTAL( a, b )
   --a=a or requestNil
   --b=b or requestNil
-  if GBB.dungeonSort[ a.dungeon ] < GBB.dungeonSort[ b.dungeon ] then
+  if not a or not b or not a.dungeon or not b.dungeon then return false end
+  if not a.start or not b.start or not a.name or not b.name then return false end
+  local aDungeonSort = GBB.dungeonSort[ a.dungeon ] or 999
+  local bDungeonSort = GBB.dungeonSort[ b.dungeon ] or 999
+  
+  if aDungeonSort < bDungeonSort then
     return true
-  elseif GBB.dungeonSort[ a.dungeon ] == GBB.dungeonSort[ b.dungeon ] then
+  elseif aDungeonSort == bDungeonSort then
     if a.start > b.start then
       return true
     elseif (a.start == b.start and a.name > b.name) then
@@ -28,10 +33,15 @@ local function requestSort_TOP_nTOTAL( a, b )
   --a=a or requestNil
   --b=b or requestNil
   if not b then return false end
+  if not a or not a.dungeon or not b.dungeon then return false end
+  if not a.start or not b.start or not a.name or not b.name then return false end
+  if not a.last or not b.last then return false end
+  local aDungeonSort = GBB.dungeonSort[ a.dungeon ] or 999
+  local bDungeonSort = GBB.dungeonSort[ b.dungeon ] or 999
 
-  if GBB.dungeonSort[ a.dungeon ] < GBB.dungeonSort[ b.dungeon ] then
+  if aDungeonSort < bDungeonSort then
     return true
-  elseif GBB.dungeonSort[ a.dungeon ] == GBB.dungeonSort[ b.dungeon ] then
+  elseif aDungeonSort == bDungeonSort then
     if a.last > b.last then
       return true
     elseif (a.start == b.start and a.name > b.name) then
@@ -43,9 +53,14 @@ end
 local function requestSort_nTOP_TOTAL( a, b )
   --a=a or requestNil
   --b=b or requestNil
-  if GBB.dungeonSort[ a.dungeon ] < GBB.dungeonSort[ b.dungeon ] then
+  if not a or not b or not a.dungeon or not b.dungeon then return false end
+  if not a.start or not b.start or not a.name or not b.name then return false end
+  local aDungeonSort = GBB.dungeonSort[ a.dungeon ] or 999
+  local bDungeonSort = GBB.dungeonSort[ b.dungeon ] or 999
+  
+  if aDungeonSort < bDungeonSort then
     return true
-  elseif GBB.dungeonSort[ a.dungeon ] == GBB.dungeonSort[ b.dungeon ] then
+  elseif aDungeonSort == bDungeonSort then
     if a.start < b.start then
       return true
     elseif (a.start == b.start and a.name > b.name) then
@@ -57,9 +72,15 @@ end
 local function requestSort_nTOP_nTOTAL( a, b )
   --a=a or requestNil
   --b=b or requestNil
-  if GBB.dungeonSort[ a.dungeon ] < GBB.dungeonSort[ b.dungeon ] then
+  if not a or not b or not a.dungeon or not b.dungeon then return false end
+  if not a.start or not b.start or not a.name or not b.name then return false end
+  if not a.last or not b.last then return false end
+  local aDungeonSort = GBB.dungeonSort[ a.dungeon ] or 999
+  local bDungeonSort = GBB.dungeonSort[ b.dungeon ] or 999
+  
+  if aDungeonSort < bDungeonSort then
     return true
-  elseif GBB.dungeonSort[ a.dungeon ] == GBB.dungeonSort[ b.dungeon ] then
+  elseif aDungeonSort == bDungeonSort then
     if a.last < b.last then
       return true
     elseif (a.start == b.start and a.name > b.name) then
